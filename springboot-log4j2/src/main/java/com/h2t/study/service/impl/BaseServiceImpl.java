@@ -8,6 +8,8 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.h2t.study.service.BaseService;
+import lombok.extern.log4j.Log4j2;
+import org.apache.logging.log4j.LogManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -21,15 +23,8 @@ import java.util.List;
  * @Date:2019/8/3 11:54 
  * @Version: 1.0
  */
+@Log4j2
 public class BaseServiceImpl<M extends BaseMapper<T>, T> extends ServiceImpl<M, T> implements BaseService<T> {
-    Logger logger = LoggerFactory.getLogger(BaseServiceImpl.class);
-
-    /**
-     * 添加
-     *
-     * @param obj
-     * @return
-     * */
     public boolean insert(T obj) {
         return this.save(obj);
     }
@@ -140,10 +135,10 @@ public class BaseServiceImpl<M extends BaseMapper<T>, T> extends ServiceImpl<M, 
      * */
     public IPage<T> selectPage(T obj, Integer pageNo, Integer pageSize) {
         if (obj == null || pageNo == null || pageSize == null) {
-            logger.error("传参错误");
+            log.error("传参错误");
         }
 
-        logger.info("根据查询条件：{} 查询，当前页码：{}，分页数：{}", obj, pageNo, pageSize);
+        log.info("根据查询条件：{} 查询，当前页码：{}，分页数：{}", obj, pageNo, pageSize);
         Page<T> page = new Page<T>(pageNo, pageSize);
         Wrapper wrapper = new QueryWrapper<T>(obj);
         return this.page(page, wrapper);

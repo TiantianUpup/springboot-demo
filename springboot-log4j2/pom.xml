@@ -12,6 +12,7 @@
 	<artifactId>springboot-log4j2</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>springboot-log4j2</name>
+	<packaging>jar</packaging>
 
 
 	<properties>
@@ -49,10 +50,20 @@
 			<artifactId>mybatis-plus-boot-starter</artifactId>
 		</dependency>
 
-		<!-- 引入log4j2依赖 -->
+		<dependency>
+			<groupId>com.lmax</groupId>
+			<artifactId>disruptor</artifactId>
+		</dependency>
+
+		<!-- log4j2 -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-log4j2</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
 		</dependency>
 	</dependencies>
 
