@@ -2,20 +2,21 @@
 
 <Configuration >
     <properties>
-        <property name="FILE_PATH">C://Users//hetiantian//Desktop//springboot-log</property>
+        <property name="LOG_INFO_HOME">C://Users//hetiantian//Desktop//springboot-log//log4j2//info</property>
+        <property name="LOG_ERROR_HOME">C://Users//hetiantian//Desktop//springboot-log//log4j2//error</property>
+        <property name="PATTERN">%d [%t] %-5p [%c] - %m%n</property>
     </properties>
 
     <!-- 控制台输出 -->
     <Appenders>
         <Console name="CONSOLE" target="SYSTEM_OUT">
-            <PatternLayout pattern="%d [%t] %-5p [%c] - %m%n"/>
+            <PatternLayout pattern="${PATTERN}"/>
         </Console>
 
         <!--RollingRandomAccessFile-->
-        <RollingRandomAccessFile name="ERROR-LOG" filePattern="${FILE_PATH}//%d.log">
-            <PatternLayout>
-                <Pattern>%d [%t] %-5p [%c] - %m%n</Pattern>
-            </PatternLayout>
+        <RollingRandomAccessFile name="ERROR-LOG" filePattern="${LOG_ERROR_HOME}//%d.log">
+            <PatternLayout pattern="${PATTERN}"/>
+
             <Policies>
                 <TimeBasedTriggeringPolicy/>
             </Policies>
@@ -24,11 +25,8 @@
             </Filters>
         </RollingRandomAccessFile>
 
-        <RollingRandomAccessFile name="INFO-LOG" fileName="${FILE_PATH}//info.log"
-                                 filePattern="%d{MM-dd-yyyy}-%i.log">
-            <PatternLayout>
-                <Pattern>%d [%t] %-5p [%c] - %m%n</Pattern>
-            </PatternLayout>
+        <RollingRandomAccessFile name="INFO-LOG" filePattern="${LOG_INFO_HOME}//%d.log">
+            <PatternLayout pattern="${PATTERN}"/>
             <Policies>
                 <TimeBasedTriggeringPolicy />
             </Policies>
