@@ -1,8 +1,6 @@
 package com.h2t.study.controller;
 
 import lombok.extern.log4j.Log4j2;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class TestController {
     //Logger logger = LoggerFactory.getLogger(TestController.class);
 
+    //Logger log = LogManager.getLogger();
     @GetMapping("/api/test")
     public Object hello() {
         log.trace("【TestController.class】trace level log input");

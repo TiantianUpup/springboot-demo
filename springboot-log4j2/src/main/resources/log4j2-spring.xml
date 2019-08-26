@@ -1,11 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <Configuration >
+    <properties>
+        <property name="FILE_PATH">C://Users//hetiantian//Desktop//springboot-log</property>
+    </properties>
+
     <Appenders>
-        <RollingRandomAccessFile name="RollingRandomAccessFile" fileName="app.log"
+        <RollingRandomAccessFile name="RollingRandomAccessFile" fileName="${FILE_PATH}//error.log"
                                  filePattern="%d{MM-dd-yyyy}-%i.log">
+            <Filters>
+                <ThresholdFilter level="warn" onMatch="ACCEPT" onMismatch="DENY"/>
+            </Filters>
+
             <PatternLayout>
-                <Pattern>%d %p %c{1.} [%t] %m%n</Pattern>
+                <Pattern>%d [%t] %-5p [%c] - %m%n</Pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+            </Policies>
+        </RollingRandomAccessFile>
+
+        <RollingRandomAccessFile name="RollingRandomAccessFile2" fileName="${FILE_PATH}//info.log"
+                                 filePattern="%d{MM-dd-yyyy}-%i.log">
+            <Filters>
+                <ThresholdFilter level="INFO" onMatch="ACCEPT" onMismatch="DENY"/>
+            </Filters>
+            <PatternLayout>
+                <Pattern>%d [%t] %-5p [%c] - %m%n</Pattern>
             </PatternLayout>
             <Policies>
                 <TimeBasedTriggeringPolicy />
@@ -15,12 +36,15 @@
 
 
     <Loggers>
-        <AsyncLogger name="com.h2t.study" level="debug" additivity="false">
+        <!-- additivity="false"表示不输出到控制台 -->
+        <AsyncLogger name="com.h2t.study" additivity="false">
             <AppenderRef ref="RollingRandomAccessFile"/>
+            <AppenderRef ref="RollingRandomAccessFile2"/>
         </AsyncLogger>
 
-        <Root level="info">
-            <AppenderRef ref="RollingRandomAccessFile"/>
-        </Root>
+        <!--<Root level="info">-->
+        <!--<AppenderRef ref="RollingRandomAccessFile"/>-->
+        <!--<AppenderRef ref="RollingRandomAccessFile2"/>-->
+        <!--</Root>-->
     </Loggers>
 </Configuration>
