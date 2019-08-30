@@ -8,7 +8,6 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.h2t.study.service.BaseService;
-import lombok.extern.log4j.Log4j2;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -22,7 +21,6 @@ import java.util.List;
  * @Date:2019/8/3 11:54 
  * @Version: 1.0
  */
-@Log4j2
 public class BaseServiceImpl<M extends BaseMapper<T>, T> extends ServiceImpl<M, T> implements BaseService<T> {
     Logger log = LogManager.getLogger();
     public boolean insert(T obj) {
@@ -97,7 +95,6 @@ public class BaseServiceImpl<M extends BaseMapper<T>, T> extends ServiceImpl<M, 
     /**
      * 根据id查找
      *
-
      * @param id
      */
     public T selectById(Long id) {

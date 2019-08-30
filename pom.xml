@@ -17,6 +17,7 @@
 
 	<modules>
 		<module>springboot-log4j2</module>
+		<module>springboot-security</module>
 	</modules>
 
 	<properties>
@@ -72,10 +73,11 @@
 				<version>3.4.2</version>
 			</dependency>
 
+			<!-- spring security -->
 			<dependency>
-				<groupId>org.projectlombok</groupId>
-				<artifactId>lombok</artifactId>
-				<version>1.18.4</version>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-security</artifactId>
+				<version>1.4.1.RELEASE</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>

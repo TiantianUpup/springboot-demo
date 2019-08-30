@@ -3,12 +3,8 @@ package com.h2t.study.po;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 
-import java.util.Date;
-
 /**
- * <p>
- * 
- * </p>
+ * 用户实体类
  *
  * @author hetiantian
  * @since 2019-08-13
@@ -21,7 +17,10 @@ public class Users extends BasePO {
     @TableField(value = "password", exist = true)
     private String password;
 
+    @TableField(value = "password", exist = true)
+    private String resource;
 
+    //getter and setter
     public String getUserName() {
         return userName;
     }
@@ -29,6 +28,7 @@ public class Users extends BasePO {
     public void setUserName(String userName) {
         this.userName = userName;
     }
+
     public String getPassword() {
         return password;
     }
@@ -37,8 +37,12 @@ public class Users extends BasePO {
         this.password = password;
     }
 
-    public void setGmtModified(Date gmtModified) {
-        this.gmtModified = gmtModified;
+    public String getResource() {
+        return resource;
+    }
+
+    public void setResource(String resource) {
+        this.resource = resource;
     }
 
     @Override
@@ -46,6 +50,7 @@ public class Users extends BasePO {
         return "Users{" +
                 "userName='" + userName + '\'' +
                 ", password='" + password + '\'' +
+                ", resource='" + resource + '\'' +
                 '}';
     }
 }
