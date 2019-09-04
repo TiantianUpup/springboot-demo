@@ -1,8 +1,14 @@
 package com.h2t.study.configure;
 
+import com.h2t.study.service.impl.UserDetailsServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 /**
  * SpringSecurity配置类
@@ -12,25 +18,29 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
  * @Version: 1.0
  */
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-    /**
-     * 配置忽略的静态文件，不加的话，登录之前页面的css,js不能正常使用，得登录之后才能正常.
-     */
-    @Override
-    public void configure(WebSecurity web) throws Exception {
-        // 忽略URL
-        web.ignoring().antMatchers("/**/*.js", "/lang/*.json", "/**/*.css", "/**/*.js", "/**/*.map", "/**/*.html",
-            "/**/*.png");
-    }
+    @Autowired
+    private UserDetailsServiceImpl userDetailsService;
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-            .anyRequest().authenticated() //任何请求,登录后可以访问
-            .and()
-            .formLogin()
-            .loginPage("/login")
-            .failureUrl("/login?error")//登录失败 返回error
-            .permitAll() //登录页面用户任意访问
-            .and()
-            .logout().permitAll(); //注销行为任意访问
+        /*
+            1.配置静态资源不进行授权验证
+            2.登录地址及跳转过后的成功页不需要验证
+            3.其余均进行授权验证
+         */
+        http.
+                authorizeRequests().antMatchers("/static/**").permitAll().
+                and().authorizeRequests().antMatchers("/user/**").hasAuthority("ROLE_/hello").
+                and().authorizeRequests().anyRequest().authenticated().
+                and().formLogin().loginPage("/login").successForwardUrl("/index").permitAll()
+                .and().logout().logoutUrl("/logout").invalidateHttpSession(true).deleteCookies().permitAll()
+        ;
+    }
+
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        //设置自定义userDetailService
+        //校验时指定密码解码方式
+        auth.userDetailsService(userDetailsService).passwordEncoder(new BCryptPasswordEncoder());
     }
 }

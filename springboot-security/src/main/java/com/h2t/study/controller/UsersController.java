@@ -17,15 +17,13 @@ import javax.annotation.Resource;
  * @Date 2019/08/30 13:45
  */
 @RestController
-@RequestMapping("/api/user")
+@RequestMapping("/user")
 public class UsersController {
     @Resource
     private UsersService usersService;
 
-    @GetMapping("/{userName}")
-    public Object selectByUserName(@PathVariable String userName) {
-        Users users = new Users();
-        users.setUserName(userName);
-        return usersService.selectList(users);
+    @GetMapping("/hello")
+    public Object test() {
+        return "hello user";
     }
 }
