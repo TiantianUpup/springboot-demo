@@ -29,7 +29,7 @@ CREATE TABLE `users` (
   `deleted` tinyint(255) NOT NULL DEFAULT '0',
   `gmt_create` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `gmt_modified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `resource` varchar(255) NOT NULL,
+  `role` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;

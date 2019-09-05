@@ -48,7 +48,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         userDTO.setPassword(usersList.get(0).getPassword());
         List<String> roleList = new ArrayList<>();
         for (Users users : usersList) {
-            roleList.add(String.format("ROLE_%s", users.getResource()));
+            roleList.add(String.format("ROLE_%s", users.getRole()));
         }
 
         userDTO.setRoleList(roleList);

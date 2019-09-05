@@ -2,10 +2,6 @@ package com.h2t.study.po;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-
-import java.util.Collection;
 
 /**
  * 用户实体类
@@ -21,8 +17,8 @@ public class Users extends BasePO {
     @TableField(value = "password", exist = true)
     private String password;
 
-    @TableField(value = "resource", exist = true)
-    private String resource;
+    @TableField(value = "role", exist = true)
+    private String role;
 
     //getter and setter
     public String getUsername() {
@@ -42,12 +38,12 @@ public class Users extends BasePO {
         this.password = password;
     }
 
-    public String getResource() {
-        return resource;
+    public String getRole() {
+        return role;
     }
 
-    public void setResource(String resource) {
-        this.resource = resource;
+    public void setRole(String role) {
+        this.role = role;
     }
 
 

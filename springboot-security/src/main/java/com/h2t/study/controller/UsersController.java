@@ -22,12 +22,12 @@ public class UsersController {
     private UsersService usersService;
 
     @GetMapping("/guest")
-    @PreAuthorize("hasAnyRole('/guest')")
+    @PreAuthorize("hasAnyRole('guest')")
     public Object guest() {
         return "hello guest";
     }
 
-    @PreAuthorize("hasAnyRole('/admin')")
+    @PreAuthorize("hasAnyRole('admin')")
     @GetMapping("/admin")
     public Object admin() {
         return "hello admin";
