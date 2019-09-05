@@ -1,8 +1,8 @@
 package com.h2t.study.service.impl;
 
+import com.h2t.study.dto.UserDTO;
 import com.h2t.study.po.Users;
 import com.h2t.study.service.UsersService;
-import com.h2t.study.vo.UserVO;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -33,25 +33,25 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         users.setUsername(username);
         List<Users> usersList = usersService.selectList(users);
 
-        return buildUserVO(usersList);
+        return buildUserDTO(usersList);
     }
 
     /**
-     * 组装UserVO对象
+     * 封装UserDTO对象
      *
      * @param usersList
      * @return
      * */
-    private UserVO buildUserVO(List<Users> usersList) {
-        UserVO userVO = new UserVO();
-        userVO.setUsername(usersList.get(0).getUsername());
-        userVO.setPassword(usersList.get(0).getPassword());
-        List<String> resourceList = new ArrayList<>();
+    private UserDTO buildUserDTO(List<Users> usersList) {
+        UserDTO userDTO = new UserDTO();
+        userDTO.setUsername(usersList.get(0).getUsername());
+        userDTO.setPassword(usersList.get(0).getPassword());
+        List<String> roleList = new ArrayList<>();
         for (Users users : usersList) {
-            resourceList.add(users.getResource());
+            roleList.add(String.format("ROLE_%s", users.getResource()));
         }
 
-        userVO.setResourceList(resourceList);
-        return userVO;
+        userDTO.setRoleList(roleList);
+        return userDTO;
     }
 }

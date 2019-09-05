@@ -1,4 +1,4 @@
-package com.h2t.study.vo;
+package com.h2t.study.dto;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -15,7 +15,7 @@ import java.util.List;
  * @Date:2019/9/3 22:52 
  * @Version: 1.0
  */
-public class UserVO implements UserDetails {
+public class UserDTO implements UserDetails {
     /**
      * 用户名
      * */
@@ -27,9 +27,9 @@ public class UserVO implements UserDetails {
     private String password;
 
     /**
-     * 权限列表
+     * 角色列表
      * */
-    private List<String> resourceList;
+    private List<String> roleList;
 
     public void setUsername(String username) {
         this.username = username;
@@ -39,19 +39,19 @@ public class UserVO implements UserDetails {
         this.password = password;
     }
 
-    public List<String> getResourceList() {
-        return resourceList;
+    public List<String> getRoleList() {
+        return roleList;
     }
 
-    public void setResourceList(List<String> resourceList) {
-        this.resourceList = resourceList;
+    public void setRoleList(List<String> roleList) {
+        this.roleList = roleList;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<GrantedAuthority> authorityList = new ArrayList<>();
-        for (String resource : resourceList) {
-            authorityList.add(new SimpleGrantedAuthority(resource));
+        for (String role : roleList) {
+            authorityList.add(new SimpleGrantedAuthority(role));
         }
 
         return authorityList;
