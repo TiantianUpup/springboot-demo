@@ -1,7 +1,7 @@
 # springboot-quartz
 
 ### springboot-quartz项目说明
-`springboot`整合`quartz`框架`demo`工程
+`springboot`整合`quartz`框架`demo`工程【非动态整合方式】
 
 ### 整合步骤
 - 引入依赖
