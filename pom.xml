@@ -19,6 +19,7 @@
 		<module>springboot-security</module>
 		<module>springboot-quartz</module>
 		<module>springboot-swagger2</module>
+		<module>springboot-shutdownnow</module>
 	</modules>
 
 	<properties>
