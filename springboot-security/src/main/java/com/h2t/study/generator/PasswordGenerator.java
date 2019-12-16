@@ -11,6 +11,6 @@ import com.h2t.study.util.PasswordEncoderUtil;
  */
 public class PasswordGenerator {
     public static void main(String[] args) {
-        System.out.println("开始{bcrypt}" +PasswordEncoderUtil.passwordEncoder("cc") + "结束");
+        System.out.println("开始{bcrypt}" + PasswordEncoderUtil.passwordEncoder("cc") + "结束");
     }
 }

@@ -16,13 +16,13 @@ import java.util.List;
 
 /**
  * @Description: 基本业务实现类
- *
  * @Author: hetiantian
- * @Date:2019/8/3 11:54 
+ * @Date:2019/8/3 11:54
  * @Version: 1.0
  */
 public class BaseServiceImpl<M extends BaseMapper<T>, T> extends ServiceImpl<M, T> implements BaseService<T> {
     Logger log = LogManager.getLogger();
+
     public boolean insert(T obj) {
         return this.save(obj);
     }
@@ -32,7 +32,7 @@ public class BaseServiceImpl<M extends BaseMapper<T>, T> extends ServiceImpl<M, 
      *
      * @param objList
      * @return
-     * */
+     */
     public boolean insertBatch(List<T> objList) {
         return this.saveBatch(objList);
     }
@@ -41,7 +41,6 @@ public class BaseServiceImpl<M extends BaseMapper<T>, T> extends ServiceImpl<M, 
     /**
      * 根据id删除
      *
-
      * @param obj
      */
     @Override
@@ -54,7 +53,7 @@ public class BaseServiceImpl<M extends BaseMapper<T>, T> extends ServiceImpl<M, 
      *
      * @param obj
      * @return
-     * */
+     */
     public boolean delete(T obj) {
         Wrapper wrapper = new QueryWrapper<T>(obj);
         return this.remove(wrapper);
@@ -65,7 +64,7 @@ public class BaseServiceImpl<M extends BaseMapper<T>, T> extends ServiceImpl<M, 
      *
      * @param idList
      * @return
-     * */
+     */
     public boolean deleteByIds(List<Long> idList) {
         return this.removeByIds(idList);
     }
@@ -75,7 +74,7 @@ public class BaseServiceImpl<M extends BaseMapper<T>, T> extends ServiceImpl<M, 
      *
      * @param id
      * @return
-     * */
+     */
     public boolean deleteById(Long id) {
         return this.removeById(id);
     }
@@ -106,7 +105,7 @@ public class BaseServiceImpl<M extends BaseMapper<T>, T> extends ServiceImpl<M, 
      *
      * @param obj
      * @return
-     * */
+     */
     public List<T> selectList(T obj) {
         Wrapper wrapper = new QueryWrapper<T>(obj);
         return this.list(wrapper);
@@ -117,7 +116,7 @@ public class BaseServiceImpl<M extends BaseMapper<T>, T> extends ServiceImpl<M, 
      *
      * @param idList
      * @return
-     * */
+     */
     public Collection<T> selectByIds(List<Long> idList) {
         return this.listByIds(idList);
     }
@@ -125,11 +124,11 @@ public class BaseServiceImpl<M extends BaseMapper<T>, T> extends ServiceImpl<M, 
     /**
      * 分页查询
      *
-     * @param pageNo 页码
+     * @param pageNo   页码
      * @param pageSize 页数
      * @param obj
      * @return
-     * */
+     */
     public IPage<T> selectPage(T obj, Integer pageNo, Integer pageSize) {
         if (obj == null || pageNo == null || pageSize == null) {
             log.error("传参错误");

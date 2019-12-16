@@ -12,23 +12,23 @@ import java.util.List;
  * 用户业务层处理对象
  *
  * @Author: hetiantian
- * @Date:2019/9/3 22:52 
+ * @Date:2019/9/3 22:52
  * @Version: 1.0
  */
 public class UserDTO implements UserDetails {
     /**
      * 用户名
-     * */
+     */
     private String username;
 
     /**
      * 密码
-     * */
+     */
     private String password;
 
     /**
      * 角色列表
-     * */
+     */
     private List<String> roleList;
 
     public void setUsername(String username) {
